@@ -1,13 +1,19 @@
 { config, lib, pkgs, nixpkgs, ... }:
 {
+  imports = [
+    ./common.nix # some abstracted common darwin functionality. could be made a bit nicer through auto import or a module I guess
+  ];
+
+  # host specific nix-darwin config goes below
+
   modules = {
-    fonts.enable = true;
-    hunspell.enable = true;
+    fonts.enable = false;
+    hunspell.enable = false;
     nix.enable = true;
     socketVmnet.enable = true;
   };
 
-  documentation.info.enable = false;
+  # documentation.info.enable = false;
 
   # zsh completions
   environment.pathsToLink = [ "/share/zsh" ];
@@ -15,57 +21,12 @@
   networking.hostName = "mini";
 
   # Enable firewall
-  networking.applicationFirewall = {
-    enable = true;
-    blockAllIncoming = true;
-  };
-
-  nix.linux-builder = {
-    enable = true;
-    ephemeral = true;
-    # config = ({ ... }: {
-    #   virtualisation.darwin-builder.diskSize = 30 * 1024;
-    # });
-  };
-
-  # Disable auto-start, use 'sudo launchctl start org.nixos.linux-builder'
-  launchd.daemons.linux-builder.serviceConfig = {
-    KeepAlive = lib.mkForce false;
-    RunAtLoad = lib.mkForce false;
-  };
+  # networking.applicationFirewall = {
+  #   enable = true;
+  #   blockAllIncoming = true;
+  # };
 
   nix.settings.trusted-users = [ "root" "stefan" ];
-
-  programs = {
-    fish.enable = true;
-    zsh.enable = true;
-  };
-
-  # Use Touch ID for sudo
-  security.pam.services.sudo_local = {
-    enable = true;
-    touchIdAuth = true;
-    reattach = true;
-  };
-
-  # Remap Caps Lock to F19 (fake hyper key)
-  system.keyboard = {
-    enableKeyMapping = true;
-    userKeyMapping = [
-      {
-        HIDKeyboardModifierMappingSrc = 30064771129;
-        HIDKeyboardModifierMappingDst = 30064771182;
-      }
-    ];
-  };
-
-  # Show path bar in Finder
-  system.defaults.finder.ShowPathbar = true;
-
-  services.skhd = {
-    enable = true;
-    # package = skhd_zig;
-  };
 
   system.primaryUser = "stefan";
   users.users.stefan = {

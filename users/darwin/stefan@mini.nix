@@ -1,16 +1,20 @@
 { config, lib, pkgs, systemName, ... }:
 {
-  imports = [ ../common/markus.nix  ];
+  imports = [
+    ../common/stefan.nix
+    ./stefan_darwin.nix
+  ];
 
+  # markus' modules are nice but I'm not there yet
   modules = {
-    emacs.enable = true;
+    emacs.enable = false;
     tmux = {
-      enable = true;
+      enable = false;
       copyCommand = "pbcopy";
       shell = "${pkgs.fish}/bin/fish";
     };
     fish = {
-      enable = true;
+      enable = false;
       extraInit = ''
         ${pkgs.mise}/bin/mise activate fish | source
       '';
