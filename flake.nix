@@ -24,8 +24,8 @@
 
       vars = {
         currentSystem = "aarch64-darwin";
-        primaryUser = "markus";
-        sshKeyFile = ./users/darwin/markus/files/id_ed25519.pub;
+        primaryUser = "stefan";
+        sshKeyFile = ./users/darwin/stefan/files/id_rsa.pub;
       };
 
       versions = {
@@ -184,7 +184,7 @@
       nixosConfigurations.playground-qcow2 = utils.mkVm { name = "playground"; targetSystem = "aarch64-linux"; profile = ./profiles/nixos/qemu-qcow2.nix; };
 
       darwinConfigurations."bootstrap" = utils.mkDarwin { name = "bootstrap"; };
-      darwinConfigurations."m4" = utils.mkDarwin { name = "m4"; };
+      darwinConfigurations."mini" = utils.mkDarwin { name = "mini"; };
 
       packages = {
         aarch64-darwin = {

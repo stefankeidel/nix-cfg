@@ -37,8 +37,8 @@
 
   programs.git = {
     enable = true;
-    userName = "mrkuz";
-    userEmail = "markus@bitsandbobs.net";
+    userName = "Stefan Keidel";
+    userEmail = "stefan.keidel@lichtblick.de";
     diff-so-fancy.enable = true;
     extraConfig = {
       init = {

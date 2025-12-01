@@ -12,7 +12,7 @@
   # zsh completions
   environment.pathsToLink = [ "/share/zsh" ];
 
-  networking.hostName = "m4";
+  networking.hostName = "mini";
 
   # Enable firewall
   networking.applicationFirewall = {
@@ -34,7 +34,7 @@
     RunAtLoad = lib.mkForce false;
   };
 
-  nix.settings.trusted-users = [ "root" "markus" ];
+  nix.settings.trusted-users = [ "root" "stefan" ];
 
   programs = {
     fish.enable = true;
@@ -67,10 +67,10 @@
     # package = skhd_zig;
   };
 
-  system.primaryUser = "markus";
-  users.users.markus = {
-    home = "/Users/markus";
+  system.primaryUser = "stefan";
+  users.users.stefan = {
+    home = "/Users/stefan";
   };
 
-  home-manager.users."markus" = ./. + "/../../users/darwin/markus@m4.nix";
+  home-manager.users."stefan" = ./. + "/../../users/darwin/stefan@mini.nix";
 }
