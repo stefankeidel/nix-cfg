@@ -185,6 +185,7 @@
 
       darwinConfigurations."bootstrap" = utils.mkDarwin { name = "bootstrap"; };
       darwinConfigurations."mini" = utils.mkDarwin { name = "mini"; };
+      darwinConfigurations."lichtblick" = utils.mkDarwin { name = "lichtblick"; };
 
       packages = {
         aarch64-darwin = {
