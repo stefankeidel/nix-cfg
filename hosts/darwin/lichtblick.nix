@@ -29,9 +29,9 @@
   nix.settings.trusted-users = [ "root" "stefan.keidel@lichtblick.de" ];
 
   system.primaryUser = "stefan.keidel@lichtblick.de";
-  users.users.stefan = {
+  users.users."stefan.keidel@lichtblick.de" = {
     home = "/Users/stefan.keidel@lichtblick.de";
   };
 
-  home-manager.users."stefan" = ./. + "/../../users/darwin/stefan@lichtblick.nix";
+  home-manager.users."stefan.keidel@lichtblick.de" = ./. + "/../../users/darwin/stefan@lichtblick.nix";
 }

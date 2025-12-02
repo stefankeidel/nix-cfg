@@ -6,28 +6,30 @@
   ];
 
   # markus' modules are nice but I'm not there yet
-  modules = {
-    emacs.enable = false;
-    tmux = {
-      enable = false;
-      copyCommand = "pbcopy";
-      shell = "${pkgs.fish}/bin/fish";
-    };
-    fish = {
-      enable = false;
-      extraInit = ''
-        ${pkgs.mise}/bin/mise activate fish | source
-      '';
-    };
-    zsh = {
-      enable = false;
-      extraInit = ''
-        eval "$(${pkgs.mise}/bin/mise activate zsh)"
-      '';
-    };
-  };
+  # modules = {
+  #   # emacs.enable = false;
+  #   # tmux = {
+  #   #   enable = false;
+  #   #   copyCommand = "pbcopy";
+  #   #   shell = "${pkgs.fish}/bin/fish";
+  #   # };
+  #   # fish = {
+  #   #   enable = false;
+  #   #   extraInit = ''
+  #   #     ${pkgs.mise}/bin/mise activate fish | source
+  #   #   '';
+  #   # };
+  #   # zsh = {
+  #   #   enable = false;
+  #   #   extraInit = ''
+  #   #     eval "$(${pkgs.mise}/bin/mise activate zsh)"
+  #   #   '';
+  #   # };
+  # };
 
   home = {
+    #homeDirectory = "/Users/stefan.keidel@lichtblick.de";
+
     packages = with pkgs; [
       duckdb
       k9s
@@ -48,7 +50,7 @@
           imports = [
             ../../vms/nixos/docker.nix
           ];
-          virtualisation.diskImage = "/Users/stefan/var/docker.qcow2";
+          virtualisation.diskImage = "/Users/stefan.keidel@lichtblick.de/var/docker.qcow2";
         };
       })
     ];

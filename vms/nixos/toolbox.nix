@@ -55,7 +55,7 @@
   };
 
   home-manager.users."${vars.primaryUser}" = {
-    imports = [ ../../../users/common/markus.nix ];
+    imports = [ ../../../users/common/stefan.nix ];
 
     home.pointerCursor = {
        package = pkgs.yaru-theme;
