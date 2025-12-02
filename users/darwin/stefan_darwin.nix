@@ -138,10 +138,5 @@
         plugins = ["git" "z" "terraform" "poetry"];
       };
     };
-
-    fzf = {
-      enable = true;
-      enableZshIntegration = true;
-    };
   };
 }

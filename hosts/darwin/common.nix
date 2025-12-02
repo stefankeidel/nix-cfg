@@ -1,6 +1,5 @@
 {
   self,
-  inputs,
   config,
   pkgs,
   lib,
@@ -56,7 +55,7 @@
   nix.settings.experimental-features = "nix-command flakes";
 
   # terraform is unfree :-/
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
 
   # nix linux builder
   nix.linux-builder = {
@@ -138,7 +137,7 @@
   environment.systemPackages = with pkgs; [
     (emacs.override { withNativeCompilation = false; })
     #emacs
-    inputs.agenix.packages.${stdenv.hostPlatform.system}.default
+    #inputs.agenix.packages.${stdenv.hostPlatform.system}.default
   ];
 
   fonts.packages = with pkgs; [

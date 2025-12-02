@@ -144,7 +144,10 @@
           ] ++ utils.attrsToValues self.nixosModules;
         };
 
-        mkDarwin = { name }: inputs.nix-darwin.lib.darwinSystem {
+        mkDarwin = {
+          name,
+          primaryUser ? vars.primaryUser
+         }: inputs.nix-darwin.lib.darwinSystem {
           specialArgs = {
             inherit self vars versions nixpkgs;
             systemName = name;
@@ -156,9 +159,9 @@
             inputs.nix-homebrew.darwinModules.nix-homebrew
             {
               nix-homebrew = {
-                enable = true;
+                enable = false;
                 enableRosetta = false;
-                user = vars.primaryUser;
+                user = primaryUser;
               };
 
               system = {
@@ -183,9 +186,9 @@
       nixosConfigurations.snapd = utils.mkVm { name = "snapd"; targetSystem = "aarch64-linux"; };
       nixosConfigurations.playground-qcow2 = utils.mkVm { name = "playground"; targetSystem = "aarch64-linux"; profile = ./profiles/nixos/qemu-qcow2.nix; };
 
-      darwinConfigurations."bootstrap" = utils.mkDarwin { name = "bootstrap"; };
+      darwinConfigurations."bootstrap" = utils.mkDarwin { name = "bootstrap"; primaryUser = "stefan.keidel@lichtblick.de"; };
       darwinConfigurations."mini" = utils.mkDarwin { name = "mini"; };
-      darwinConfigurations."lichtblick" = utils.mkDarwin { name = "lichtblick"; };
+      darwinConfigurations."lichtblick" = utils.mkDarwin { name = "lichtblick"; primaryUser = "stefan.keidel@lichtblick.de"; };
 
       packages = {
         aarch64-darwin = {

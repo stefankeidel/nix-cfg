@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nixpkgs, ... }:
+{ config, lib, pkgs, nixpkgs, inputs, ... }:
 {
   imports = [
     ./common.nix # some abstracted common darwin functionality. could be made a bit nicer through auto import or a module I guess
