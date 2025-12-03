@@ -24,8 +24,8 @@
 
       vars = {
         currentSystem = "aarch64-darwin";
-        primaryUser = "markus";
-        sshKeyFile = ./users/darwin/markus/files/id_ed25519.pub;
+        primaryUser = "stefan";
+        sshKeyFile = ./users/darwin/stefan/files/id_rsa.pub;
       };
 
       versions = {
@@ -144,7 +144,10 @@
           ] ++ utils.attrsToValues self.nixosModules;
         };
 
-        mkDarwin = { name }: inputs.nix-darwin.lib.darwinSystem {
+        mkDarwin = {
+          name,
+          primaryUser ? vars.primaryUser
+         }: inputs.nix-darwin.lib.darwinSystem {
           specialArgs = {
             inherit self vars versions nixpkgs;
             systemName = name;
@@ -156,9 +159,9 @@
             inputs.nix-homebrew.darwinModules.nix-homebrew
             {
               nix-homebrew = {
-                enable = true;
+                enable = false;
                 enableRosetta = false;
-                user = vars.primaryUser;
+                user = primaryUser;
               };
 
               system = {
@@ -183,8 +186,9 @@
       nixosConfigurations.snapd = utils.mkVm { name = "snapd"; targetSystem = "aarch64-linux"; };
       nixosConfigurations.playground-qcow2 = utils.mkVm { name = "playground"; targetSystem = "aarch64-linux"; profile = ./profiles/nixos/qemu-qcow2.nix; };
 
-      darwinConfigurations."bootstrap" = utils.mkDarwin { name = "bootstrap"; };
-      darwinConfigurations."m4" = utils.mkDarwin { name = "m4"; };
+      darwinConfigurations."bootstrap" = utils.mkDarwin { name = "bootstrap"; primaryUser = "stefan.keidel@lichtblick.de"; };
+      darwinConfigurations."mini" = utils.mkDarwin { name = "mini"; };
+      darwinConfigurations."lichtblick" = utils.mkDarwin { name = "lichtblick"; primaryUser = "stefan.keidel@lichtblick.de"; };
 
       packages = {
         aarch64-darwin = {
@@ -247,7 +251,7 @@
         fish = import ./modules/home-manager/fish.nix;
         kitty = import ./modules/home-manager/kitty.nix;
         tmux = import ./modules/home-manager/tmux.nix;
-        zsh = import ./modules/home-manager/zsh.nix;
+        #zsh = import ./modules/home-manager/zsh.nix;
       };
 
       nixosModules = {

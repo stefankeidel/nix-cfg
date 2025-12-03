@@ -1,5 +1,9 @@
 # Introduction
 
+Well, obviously I forked this from @mrkuz, so all credit to him. [Here's the upstream repo](https://github.com/mrkuz/macos-config).
+
+I don't agree with his entire philosophy, so I've made some changes to suit my own preferences. Overall, it's a fantastic starting point for managing MacOS configurations with nix-darwin, and I will try to keep as much intact as I can.
+
 > ✅ Works on my machine
 
 Welcome to my declarative, modular and - of course - opinionated MacOS system configuration using [nix-darwin](https://github.com/LnL7/nix-darwin) with [flakes](https://nix.dev/concepts/flakes.html). Please be aware this might not work out of the box for you.
@@ -146,7 +150,7 @@ Home Manager configuration per user. Usually imported by one ore more [hosts](#h
 
 | Name   | Description     |
 |--------|-----------------|
-| markus | Yeah, that's me |
+| ~markus~ stefan | Yeah, that's me |
 
 ## Modules
 
