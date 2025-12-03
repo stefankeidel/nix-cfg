@@ -12,7 +12,7 @@
     packages = with pkgs; [
       alejandra
       basedpyright
-      colima
+      #colima
       docker-buildx
       docker-client
       doctl
