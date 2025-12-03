@@ -36,6 +36,7 @@
       kubectl
       kubectx
       kubernetes-helm
+      kubelogin
       (writeShellScriptBin "do_bak" ''
         #!/usr/bin/env zsh
         set -e
