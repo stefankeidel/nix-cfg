@@ -17,6 +17,7 @@
       docker-client
       doctl
       emacs-lsp-booster
+      tree-sitter
       kalker
       mise
       nodejs

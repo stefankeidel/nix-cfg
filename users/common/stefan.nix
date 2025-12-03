@@ -19,7 +19,6 @@
       pkgs.rsync
       pkgs.spaceship-prompt
       pkgs.speedtest-go
-      pkgs.tree-sitter
       pkgs.unixtools.watch
       pkgs.vim
       pkgs.wget

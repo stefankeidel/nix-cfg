@@ -37,23 +37,13 @@
       kubectx
       kubernetes-helm
       kubelogin
+      colima
       (writeShellScriptBin "do_bak" ''
         #!/usr/bin/env zsh
         set -e
         restic --password-file ~/.config/restic-pw --repo rclone:sb:lichtblick-bak backup ~/code ~/Documents ~/Desktop ~/Nextcloud --skip-if-unchanged
         restic --password-file ~/.config/restic-pw --repo rclone:sb:lichtblick-bak forget --keep-daily 7 --keep-weekly 4 --keep-monthly 12 --prune
       '')
-      # VMs
-      (lib.buildQemuVm {
-        name = "docker";
-        targetSystem = "aarch64-linux";
-        configuration = {
-          imports = [
-            ../../vms/nixos/docker.nix
-          ];
-          virtualisation.diskImage = "/Users/stefan.keidel@lichtblick.de/var/docker.qcow2";
-        };
-      })
     ];
   };
 }
