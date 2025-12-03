@@ -1,5 +1,4 @@
 # this module is the absolute bare minimum. also available on headless systems and small VMs
-# TODO: REALLY!? The list is pretty big, postgres and emacs :D
 { config, lib, pkgs, systemName, ... }:
 {
   home = {
@@ -7,14 +6,12 @@
       pkgs.coreutils
       pkgs.curl
       pkgs.dua
-      pkgs.emacs-lsp-booster
       pkgs.eza
       pkgs.git
       pkgs.httpie
       pkgs.netcat-gnu
       pkgs.nix-direnv
       pkgs.nmap
-      pkgs.postgresql
       pkgs.pv
       pkgs.rclone
       pkgs.restic

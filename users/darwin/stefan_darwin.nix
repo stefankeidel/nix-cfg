@@ -4,11 +4,30 @@
 {
   home = {
     # enableNixpkgsReleaseCheck = false;
-    # common packages for all systems
-
-    # minimal packages, can also be used in headless systems
-    # probably replaced by users/common/stefan.nix in this new rig
-    # packages = pkgs.callPackage ./min-packages.nix {inherit inputs;};
+    
+    # common darwin pkgs
+    # they're all somewhat dev machines, right!?
+    # install the heavier stuff we may not need
+    # on minimal boxes here
+    packages = with pkgs; [
+      alejandra
+      basedpyright
+      colima
+      docker-buildx
+      docker-client
+      doctl
+      emacs-lsp-booster
+      kalker
+      mise
+      nodejs
+      postgresql
+      pre-commit
+      pwgen
+      tidy-viewer
+      uv
+      yarn
+      yq
+    ];
 
     sessionVariables = {
       EDITOR = "vim";
@@ -37,26 +56,28 @@
     };
 
     # all my dotfiles, should probably be modularized
+    # at some point(tm)
     #
     # emacs config
-    # file.".config/doom" = {
-    #   source = ../dotfiles/doom-emacs;
-    #   recursive = true;
-    # };
+    file.".config/doom" = {
+      source = ./stefan/files/doom-emacs;
+      recursive = true;
+    };
 
-    # file.".vimrc".source = ../dotfiles/vim_config;
-    # file.".wezterm.lua".source = ../dotfiles/weztermconfig.lua;
-    # file.".functions".source = ../dotfiles/functions;
-    # file.".hushlogin".source = ../dotfiles/hushlogin;
-    # file.".gitconfig".source = ../dotfiles/gitconfig;
-    # file."./.dbt/profiles.yml".source = ../dotfiles/dbt-profiles.yml;
-    # file.".config/direnv/direnv.toml".source = ../dotfiles/direnv.toml;
+    file.".vimrc".source = ./stefan/files/vim_config;
+    file.".wezterm.lua".source = ./stefan/files/weztermconfig.lua;
+    file.".functions".source = ./stefan/files/functions;
+    file.".hushlogin".source = ./stefan/files/hushlogin;
+    # probably replaced by inline config, i.e. properly nixified
+    # file.".gitconfig".source = ./stefan/files/gitconfig;
+    file."./.dbt/profiles.yml".source = ./stefan/files/dbt-profiles.yml;
+    file.".config/direnv/direnv.toml".source = ./stefan/files/direnv.toml;
 
-    # file.".vim/backups/.keep".source = builtins.toFile "keep" "";
-    # file.".vim/swaps/.keep".source = builtins.toFile "keep" "";
-    # file.".vim/undo/.keep".source = builtins.toFile "keep" "";
-    # file."/Library/Application Support/Code/User/settings.json".source = ../dotfiles/vscode-settings.json;
-    # file."/Library/Application Support/Code - Insiders/User/settings.json".source = ../dotfiles/vscode-settings.json;
+    file.".vim/backups/.keep".source = builtins.toFile "keep" "";
+    file.".vim/swaps/.keep".source = builtins.toFile "keep" "";
+    file.".vim/undo/.keep".source = builtins.toFile "keep" "";
+    file."/Library/Application Support/Code/User/settings.json".source = ./stefan/files/vscode-settings.json;
+    file."/Library/Application Support/Code - Insiders/User/settings.json".source = ./stefan/files/vscode-settings.json;
   };
 
   programs = {
